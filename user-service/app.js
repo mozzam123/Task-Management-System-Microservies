@@ -1,12 +1,6 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
+const userroutes = require("./routes/userRoute");
 
-
-
-app.get('/', (req, res) => {
-    res.send("Mozzam")
-})
-
-
-
-module.exports = app
+app.use("/", userroutes);
+module.exports = app;
