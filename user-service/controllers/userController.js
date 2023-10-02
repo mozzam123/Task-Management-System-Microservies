@@ -7,10 +7,12 @@ exports.GetRegisterUser = (req, res) => {
 exports.RegisterUser = async (req, res) => {
   try {
     const username = req.body.username;
-    const existingUser = await userModel.findOne({username: username});
-    const alreadyEmail = await userModel.findOne({email: req.body.email})
+    const existingUser = await userModel.findOne({ username: username });
+    const alreadyEmail = await userModel.findOne({ email: req.body.email });
     if (existingUser || alreadyEmail) {
-      res.render("registration", { message: "Username or email already exists" });
+      return res.render("registration", {
+        message: "Username or email already exists",
+      });
     } else {
       const userData = new userModel({
         username: username,
@@ -26,11 +28,33 @@ exports.RegisterUser = async (req, res) => {
     }
   } catch (error) {
     console.log("*****errors*****", error);
-    res.render("registration", { error: error.message });
+    return res.render("registration", { error: error.message });
   }
 };
 
+exports.GetLoginPage = async (req, res) => {
+  res.render("login");
+};
 
-exports.GetLoginPage = async (req,res) =>{
-  res.render("login")
-}
+exports.LoginUser = async (req, res) => {
+  try {
+    const username = req.body.username;
+    const password = req.body.password;
+    const existingUser = await userModel.findOne({
+      username: username,
+      password: password,
+    });
+
+    if (existingUser) {
+      console.log("*****user already present****");
+      return res.render("login");
+    }
+    
+    console.log("*****user not present****");
+
+    res.render("login");
+  } catch (error) {
+    console.log("**********", error);
+    return res.render("login");
+  }
+};
