@@ -46,7 +46,7 @@ exports.LoginUser = async (req, res) => {
     });
 
     if (existingUser) {
-      console.log("*****user already present****");
+      console.log("*****user present****");
       return res.render("login");
     }
     
