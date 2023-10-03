@@ -1,4 +1,9 @@
 const userModel = require("./../models/userModel");
+const { Kafka, Partitioners } = require("kafkajs");
+
+// Create Kafka producer instance
+const kafka = new Kafka({ brokers: ["localhost:9092"] });
+const producer = kafka.producer();
 
 exports.GetRegisterUser = (req, res) => {
   res.render("registration");
@@ -46,13 +51,30 @@ exports.LoginUser = async (req, res) => {
     });
 
     if (!existingUser) {
-      console.log("*****user not present****");
-      return res.render("login", {error: "Invalid credentials"});
+      return res.render("login", { error: "Invalid credentials" });
     }
-    
-    console.log("*****user present****");
+    // Create message to be sent to Kafka topic
+    const message = {
+      username: username,
+      loggedIn: true,
+    };
+    console.log('Created Message');
+
+    // Send message to Kafka topic
+    await producer.connect();
+    console.log('Producer connected');
+
+    await producer.send({
+      topic: 'user-credentials',
+      messages: [{ value: JSON.stringify(message) }],
+    });
+
+    console.log(`Sent message to Kafka topic 'user-credentials': ${JSON.stringify(message)}`);
+    await producer.disconnect();
+    console.log('Disconnected Producer');
 
     res.redirect("http://localhost:9000/");
+    console.log('Redirected');
   } catch (error) {
     console.log("**********", error);
     return res.render("login");

@@ -3,7 +3,12 @@
 
 <div class="container">
   <h1>Task List</h1>
+    {{#if currentUser}}
+    <h1>Current User: {{currentUser}}</h1>
+    {{/if}}
+
   <div id="newTask">
+    
     <form class="login-form" action='/' method="post">
       <input type="text" id="task" name="task" placeholder="Enter a Task">
       <button id="push" type="submit">ADD</button>

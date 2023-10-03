@@ -10,7 +10,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('DB connection established'));
+  .then(() => console.log('DB connection established for User Service'));
 
 
 // START SERVER
