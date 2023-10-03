@@ -45,14 +45,14 @@ exports.LoginUser = async (req, res) => {
       password: password,
     });
 
-    if (existingUser) {
-      console.log("*****user present****");
-      return res.render("login");
+    if (!existingUser) {
+      console.log("*****user not present****");
+      return res.render("login", {error: "Invalid credentials"});
     }
     
-    console.log("*****user not present****");
+    console.log("*****user present****");
 
-    res.render("login");
+    res.redirect("http://localhost:9000/");
   } catch (error) {
     console.log("**********", error);
     return res.render("login");

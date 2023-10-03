@@ -22,16 +22,14 @@
         <h1 class="text-success text-center">registration Form</h1> <br>
         <br>
         <div class="col-lg-8 m-auto">
-            
+
             <form id="myform" action="/register" class="bg-light" method="post">
                 <div class="form-group">
                     <label for="first_name">Username</label>
                     <input type="text" class="form-control" value="" name="username" placeholder="">
                     <span id="name" class="text-danger font-weight-bold"></span>
                     {{#if message}}
-                    <div style="color: red;">
-                        {{message}}
-                    </div>
+                    <p>{{message}}</p>
                     {{/if}}
 
                 </div>

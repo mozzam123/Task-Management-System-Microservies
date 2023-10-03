@@ -1,11 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Service</title>
-</head>
-<body>
-    <h1>Task Service</h1>
-</body>
-</html>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<link rel="stylesheet" href="css/task.css">
+
+<div class="container">
+  <h1>Task List</h1>
+  <div id="newTask">
+    <form class="login-form" action='/' method="post">
+      <input type="text" id="task" name="task" placeholder="Enter a Task">
+      <button id="push" type="submit">ADD</button>
+    </form>
+  </div>
+
+  <div id="tasks"></div>
+</div>
+
+
+
+
+
+
+<script>
+  const pushBtn = document.getElementById('push');
+  const newTask = document.getElementById('newTask');
+  const taskInput = document.getElementById('taskInput');
+  const tasks = document.getElementById('tasks');
+
+  const createNewTask = (value) => {
+    return (`
+    <div class="task">
+      <span class="task-name">${value}</span>
+      <button class="delete">
+        <i class='fas'>&#xf2ed;</i>
+      </button>
+    </div>
+  `)
+  }
+  const deleteTask = e => {
+    e.currentTarget.parentNode.remove();
+    const task = document.querySelectorAll('.task');
+    if (!task.length) tasks.style.display = 'none';
+  }
+  const toggleTask = e => e.currentTarget.classList.toggle('completed');
+
+  (() => taskInput.focus())();
+  pushBtn.addEventListener('click', () => {
+    if (!taskInput.value) {
+      alert("Please Enter a Task");
+    }
+    else {
+      // task 추가
+      tasks.innerHTML += createNewTask(taskInput.value);
+      const task = document.querySelectorAll('.task');
+      if (task.length) tasks.style.display = 'block';
+
+      // task 삭제
+      const deleteBtns = document.querySelectorAll('.delete');
+      deleteBtns.forEach(btn => btn.addEventListener('click', deleteTask));
+
+      // task 완료/미완료 토글
+      const taskList = document.querySelectorAll('.task');
+      taskList.forEach(task => task.addEventListener('click', toggleTask));
+
+      taskInput.value = '';
+    }
+    taskInput.focus();
+  });
+  taskInput.addEventListener('keydown', e => e.keyCode === 13 && pushBtn.click());
+</script>
