@@ -37,7 +37,7 @@ exports.CreateTask = async (req, res) => {
     const task = req.body.task;
     if (task.length <= 0) {
       console.log("Please Enter a task...this cant be null");
-      return res.send("task");
+      return res.render("task", {blankError: "Please Enter a task...this cant be null"});
     }
     const newTask = new taskModel({
       username: latestUsername,
@@ -45,9 +45,9 @@ exports.CreateTask = async (req, res) => {
     });
     const savedTask = await newTask.save();
     console.log(`Username: ${savedTask.username} and Task: ${savedTask.task}`);
-    return res.render("task");
+    res.render("task");
   } catch (error) {
     console.log("*******error: ", error);
-    return res.send("task");
+    return res.render("task");
   }
 };
