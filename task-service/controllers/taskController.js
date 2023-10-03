@@ -1,4 +1,4 @@
-const Task = require("./../models/taskModel");
+const taskModel = require("./../models/taskModel");
 const { Kafka } = require("kafkajs");
 
 // Create Kafka consumer instance
@@ -29,11 +29,25 @@ consumer.run({
 });
 
 exports.GetTask = async (req, res) => {
-    res.render("task", {currentUser: latestUsername});
+  res.render("task", { currentUser: latestUsername });
 };
 
 exports.CreateTask = async (req, res) => {
-  const task = req.body;
-  console.log("Task: ", task);
-  return res.render("task", {currentUser: latestUsername});
+  try {
+    const task = req.body.task;
+    if (task.length <= 0) {
+      console.log("Please Enter a task...this cant be null");
+      return res.send("task");
+    }
+    const newTask = new taskModel({
+      username: latestUsername,
+      task: task,
+    });
+    const savedTask = await newTask.save();
+    console.log(`Username: ${savedTask.username} and Task: ${savedTask.task}`);
+    return res.render("task");
+  } catch (error) {
+    console.log("*******error: ", error);
+    return res.send("task");
+  }
 };
