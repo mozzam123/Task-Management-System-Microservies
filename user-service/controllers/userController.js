@@ -73,7 +73,7 @@ exports.LoginUser = async (req, res) => {
     await producer.disconnect();
     console.log('Disconnected Producer');
 
-    res.redirect("http://localhost:9000/");
+    res.redirect("http://localhost:2000/");
     console.log('Redirected');
   } catch (error) {
     console.log("**********", error);

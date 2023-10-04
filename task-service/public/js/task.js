@@ -1,6 +1,6 @@
 function logout() {
   // Redirect to the logout URL
-  window.location.href = "http://127.0.0.1:8000/login";
+  window.location.href = "http://127.0.0.1:1000/login";
 }
 const pushBtn = document.getElementById("push");
 const newTask = document.getElementById("newTask");
