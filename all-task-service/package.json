@@ -7,5 +7,16 @@
     "kafkajs": "^2.2.4",
     "mongoose": "^7.5.3",
     "nodemon": "^3.0.1"
-  }
+  },
+  "name": "all-task-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
