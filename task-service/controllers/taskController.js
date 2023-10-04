@@ -51,3 +51,9 @@ exports.CreateTask = async (req, res) => {
     return res.render("task");
   }
 };
+
+
+exports.GetAllTask = async (req,res) =>{
+  const allTask = await taskModel.find()
+  res.json(allTask)
+}
