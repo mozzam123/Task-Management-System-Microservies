@@ -2,6 +2,10 @@ function logout() {
   // Redirect to the logout URL
   window.location.href = "http://127.0.0.1:1000/login";
 }
+
+function allTask(){
+  window.location.href = "http://localhost:2000/alls";
+}
 const pushBtn = document.getElementById("push");
 const newTask = document.getElementById("newTask");
 const taskInput = document.getElementById("taskInput");

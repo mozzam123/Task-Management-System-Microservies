@@ -37,7 +37,7 @@ exports.CreateTask = async (req, res) => {
     const task = req.body.task;
     if (task.length <= 0) {
       console.log("Please Enter a task...this cant be null");
-      return res.render("task", {blankError: "Please Enter a task...this cant be null"});
+      return res.render("task", { blankError: "Please Enter a task...this cant be null" });
     }
     const newTask = new taskModel({
       username: latestUsername,
@@ -53,7 +53,7 @@ exports.CreateTask = async (req, res) => {
 };
 
 
-exports.GetAllTask = async (req,res) =>{
+exports.GetAllTask = async (req, res) => {
   const allTask = await taskModel.find()
-  res.json(allTask)
+  res.render('alltask', { allTask })
 }
