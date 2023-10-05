@@ -54,6 +54,6 @@ exports.CreateTask = async (req, res) => {
 
 
 exports.GetAllTask = async (req, res) => {
-  const allTask = await taskModel.find()
+  const allTask = await taskModel.find({username: latestUsername})
   res.render('alltask', { allTask })
 }
