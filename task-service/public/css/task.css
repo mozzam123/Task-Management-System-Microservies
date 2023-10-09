@@ -10,7 +10,7 @@
 }
 
 body {
-  min-height: 100vh;
+  min-height: auto !important;
   background: linear-gradient( 135deg, #8052ec, #d161ff);
 }
 
@@ -38,8 +38,8 @@ h1 {
 
 #newTask input {
   width: 75%;
-  height: 60px;
-  font-size: 20px;
+  height: 54px;
+  font-size: 18px;
   padding: 15px;
   border: 2px solid #d1d3d4;
   color: #111;
@@ -57,7 +57,7 @@ h1 {
   position: relative;
   float: right;
   width: 20%;
-  height: 60px;
+  height: 54px;
   border-radius: 5px;
   font-size: 20px;
   font-weight: 500;
@@ -188,4 +188,12 @@ h1 {
   position: relative;
   float: left;
   margin: -29px 0 0 31px;
+}
+
+.user-info p{
+  padding: 0 0 2%;
+    font-size: 18px;
+}
+.user-info span{
+  font-weight: 600;
 }

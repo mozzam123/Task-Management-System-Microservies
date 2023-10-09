@@ -8,9 +8,10 @@
   </div>
   <div class="container">
     <h1>Task List</h1>
-    <h1>Current User: {{currentUser}}</h1>
     <div id="newTask">
-
+      <div class="user-info"> 
+        <p>Current User: <span> Anova {{currentUser}} </span> </p>
+      </div>
       <form class="login-form" action='/' method="post">
         <input type="text" id="task" name="task" placeholder="Enter a Task">
         <button id="push" type="submit">ADD</button>
@@ -18,9 +19,9 @@
     </div>
     <div class="warning">
 
-    {{#if blankError}}
-    <p>{{blankError}}</p>
-    {{/if}}
+      {{#if blankError}}
+      <p>{{blankError}}</p>
+      {{/if}}
 
     </div>
 
