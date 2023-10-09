@@ -48,12 +48,12 @@ exports.CreateTask = async (req, res) => {
     res.render("task");
   } catch (error) {
     console.log("*******error: ", error);
-    return res.render("task");
+    res.render("task");
   }
 };
 
 
 exports.GetAllTask = async (req, res) => {
-  const allTask = await taskModel.find({username: latestUsername})
+  const allTask = await taskModel.find({ username: latestUsername })
   res.render('alltask', { allTask })
 }

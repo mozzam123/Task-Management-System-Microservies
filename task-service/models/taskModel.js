@@ -13,6 +13,9 @@ const taskSchema = new mongoose.Schema({
   }
 });
 
+// Create a compound index on username and task to ensure uniqueness per user
+taskSchema.index({ username: 1, task: 1 }, { unique: true });
+
 // Create the User model
 const taskModel = mongoose.model('Task', taskSchema);
 
