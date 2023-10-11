@@ -10,7 +10,7 @@
     <h1>Task List</h1>
     <div id="newTask">
       <div class="user-info"> 
-        <p>Current User: <span> Anova {{currentUser}} </span> </p>
+        <p>Current User: <span> {{currentUser}} </span> </p>
       </div>
       <form class="login-form" action='/' method="post">
         <input type="text" id="task" name="task" placeholder="Enter a Task">
@@ -21,6 +21,14 @@
 
       {{#if blankError}}
       <p>{{blankError}}</p>
+      {{/if}}
+
+    </div>
+
+    <div class="warning">
+
+      {{#if error}}
+      <p>{{error}}</p>
       {{/if}}
 
     </div>

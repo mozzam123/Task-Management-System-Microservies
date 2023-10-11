@@ -14,5 +14,5 @@ mongoose
     .then(() => console.log('DB connection established for Task service'));
 
 app.listen(PORT, () => {
-    console.log(`app listenting on port ${PORT}`);
+    console.log(`app listenting on http://localhost:${PORT}/`);
 })

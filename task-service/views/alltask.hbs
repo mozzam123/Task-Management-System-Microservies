@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Task Table</title>
-  <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/alltask.css">
+  <script src="js/alltask.js"></script>
 </head>
+
 <body>
-  <h1>Task Table</h1>
-  <table>
-    <tr>
-      <th>Username</th>
-      <th>Task</th>
-    </tr>
-    {{#each allTask}}
-    <tr>
-      <td>{{this.username}}</td>
-      <td>{{this.task}}</td>
-    </tr>
-    {{/each}}
-  </table>
+  <div class="main-container">
+    <h1>Task Table</h1>
+
+    {{#if latestUsername}}
+    <p>{{latestUsername}}</p>
+    {{/if}}
+
+
+    <table>
+      <tr>
+        <th>Username</th>
+        <th>Task</th>
+      </tr>
+      {{#each allTask}}
+      <tr>
+        <td>{{this.username}}</td>
+        <td>{{this.task}}</td>
+      </tr>
+      {{/each}}
+    </table>
+
+        <div class="new">
+      <button type="button" onclick="logout()" class="btn btn-danger">Logout</button>
+    </div>
+    <br>
+
+
+    <div class="new">
+      <button type="button"  class="btn btn-danger" onclick="createTask()">Create New Task</button>
+    </div>
+  </div>
 </body>
+
 </html>
