@@ -58,6 +58,8 @@ exports.GetAllTask = async (req, res) => {
   res.render('alltask', { allTask, latestUsername })
 }
 
+
+
 exports.DeleteTask = async (req, res) => {
   try {
     const taskId = req.params.taskId
@@ -68,5 +70,16 @@ exports.DeleteTask = async (req, res) => {
     console.log(error);
     res.status(500).send("Error deleting task")
   }
+}
 
+exports.UpdateTask = async(req,res) =>{
+  try {
+    const taskId = req.params.taskId
+    await taskModel.findByIdAndUpdate(taskId)
+    res.status(200).render('alltask')
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error deleting task")
+  }
 }

@@ -25,3 +25,20 @@ function deleteTask(taskId) {
     .catch(error => console.error('Error:', error));
 }
 
+function updateTask(taskId) {
+  fetch(`http://127.0.0.1:2000/update-task/${taskId}`, {
+    method: 'PATCH'
+  })
+    .then(response => {
+      if (response.ok) {
+        // Reload the page after successful deletion
+        window.location.reload();
+        console.log("Updated Succesfull");
+      } else {
+        console.error('Failed to update task.');
+      }
+    })
+    .catch(error => console.error('Error:', error));
+
+}
+
