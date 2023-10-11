@@ -5,6 +5,7 @@ const taskControllers = require("./../controllers/taskController")
 router.route('/').get(taskControllers.GetTask)
 router.route('/').post(taskControllers.CreateTask)
 router.route('/alls').get(taskControllers.GetAllTask)
+router.delete('/delete-task/:taskId', taskControllers.DeleteTask);
 
 
 

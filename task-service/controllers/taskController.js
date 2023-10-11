@@ -48,7 +48,7 @@ exports.CreateTask = async (req, res) => {
     res.render("task");
   } catch (error) {
     console.log("*******error: ", error);
-    res.render("task", {error: error});
+    res.render("task", { error: error });
   }
 };
 
@@ -56,4 +56,17 @@ exports.CreateTask = async (req, res) => {
 exports.GetAllTask = async (req, res) => {
   const allTask = await taskModel.find({ username: latestUsername })
   res.render('alltask', { allTask, latestUsername })
+}
+
+exports.DeleteTask = async (req, res) => {
+  try {
+    const taskId = req.params.taskId
+    await taskModel.findByIdAndDelete(taskId)
+    res.status(200).render('alltask')
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error deleting task")
+  }
+
 }

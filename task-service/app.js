@@ -3,6 +3,11 @@ const app = express()
 const bodyParser = require("body-parser")
 const taskroute = require("./routes/taskRoutes")
 const path = require("path")
+const cors = require('cors'); 
+
+
+// Allow all origins for simplicity (you may want to restrict this in production)
+app.use(cors());
 
 // Use body-parser middleware to parse URL-encoded data
 app.use(bodyParser.urlencoded({ extended: true }));

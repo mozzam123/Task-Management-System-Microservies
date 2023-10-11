@@ -13,31 +13,33 @@
     <h1>Task Table</h1>
 
     {{#if latestUsername}}
-    <p>{{latestUsername}}</p>
+    <p><strong> Username: {{latestUsername}}</strong> </p>
     {{/if}}
-
 
     <table>
       <tr>
         <th>Username</th>
         <th>Task</th>
+        <th>Action</th> <!-- New header for action -->
       </tr>
       {{#each allTask}}
       <tr>
         <td>{{this.username}}</td>
         <td>{{this.task}}</td>
+        <td>
+          <button type="button" onclick="deleteTask('{{this._id}}')" class="btn btn-danger">Delete</button>
+        </td>
       </tr>
       {{/each}}
     </table>
 
-        <div class="new">
+    <div class="new">
       <button type="button" onclick="logout()" class="btn btn-danger">Logout</button>
     </div>
     <br>
 
-
     <div class="new">
-      <button type="button"  class="btn btn-danger" onclick="createTask()">Create New Task</button>
+      <button type="button" class="btn btn-danger" onclick="createTask()">Create New Task</button>
     </div>
   </div>
 </body>
