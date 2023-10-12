@@ -46,24 +46,6 @@
       <button type="button" class="btn btn-danger" onclick="createTask()">Create New Task</button>
     </div>
   </div>
-
-  <script>
-    function makeEditable(element, taskId) {
-      const taskText = element.innerText;
-      const inputElement = document.getElementById(`edit-task-${taskId}`);
-      inputElement.value = taskText;
-      inputElement.style.display = 'block';
-      element.style.display = 'none';
-
-      inputElement.focus();
-      inputElement.addEventListener('blur', () => {
-        element.innerText = inputElement.value;
-        element.style.display = 'block';
-        inputElement.style.display = 'none';
-        // Here you can update the task on the server if needed
-      });
-    }
-  </script>
 </body>
 
 </html>

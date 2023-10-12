@@ -75,8 +75,10 @@ exports.DeleteTask = async (req, res) => {
 exports.UpdateTask = async(req,res) =>{
   try {
     const taskId = req.params.taskId
-    await taskModel.findByIdAndUpdate(taskId)
-    res.status(200).render('alltask')
+    const task = await taskModel.findByIdAndUpdate(taskId)
+    console.log('***********task updated****************');
+    console.log(task);
+    res.status(200)
     
   } catch (error) {
     console.log(error);

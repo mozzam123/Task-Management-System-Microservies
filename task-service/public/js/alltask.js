@@ -42,3 +42,45 @@ function updateTask(taskId) {
 
 }
 
+function makeEditable(element, taskId) {
+  const taskText = element.innerText;
+  const inputElement = document.getElementById(`edit-task-${taskId}`);
+  
+  // Set the input value to the current task text
+  inputElement.value = taskText;
+  
+  // Display the input field and hide the task text
+  inputElement.style.display = 'block';
+  element.style.display = 'none';
+  
+  // Focus on the input field
+  inputElement.focus();
+  
+  // Add an event listener to handle the blur event on the input field
+  inputElement.addEventListener('blur', () => {
+    // Update the task text with the new input value
+    element.innerText = inputElement.value;
+    
+    // Display the task text and hide the input field
+    element.style.display = 'block';
+    inputElement.style.display = 'none';
+    
+    // Here you can update the task on the server if needed
+    const updatedTask = inputElement.value;
+    fetch(`http://127.0.0.1:2000/update-task/${taskId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ task: updatedTask })  // Send the updated task as JSON
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log("Task updated successfully");
+        } else {
+          console.error('Failed to update task.');
+        }
+      })
+      .catch(error => console.error('Error:', error));
+  });
+}
