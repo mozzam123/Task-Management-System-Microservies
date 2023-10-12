@@ -74,6 +74,7 @@ exports.DeleteTask = async (req, res) => {
 
 exports.UpdateTask = async(req,res) =>{
   try {
+    console.log(req.params);
     const taskId = req.params.taskId
     const task = await taskModel.findByIdAndUpdate(taskId)
     console.log('***********task updated****************');
